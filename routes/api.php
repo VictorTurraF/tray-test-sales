@@ -49,6 +49,21 @@ Route::get('/sellers', function () {
     ], 200);
 });
 
+Route::get('/sellers/{seller}/orders', function ($sellerId) {
+    // Retrieve the seller record
+    $seller = Seller::find($sellerId);
+
+    if (!$seller) {
+        return response()->json(['message' => 'Seller not found'], 404);
+    }
+
+    // Retrieve the orders associated with the seller
+    $orders = Order::where('seller_id', $sellerId)->get();
+
+    return response()->json(['data' => $orders], 200);
+});
+
+
 Route::post('/orders', function (Request $request) {
 
     $fields = $request->only([
