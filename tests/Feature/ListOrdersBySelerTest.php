@@ -48,4 +48,16 @@ class ListOrdersBySelerTest extends TestCase
             'payment_approved_at' => $lastOrder->payment_approved_at,
         ]);
     }
+
+    public function testShouldRespondWithNotFoundIfTheSellerIdDontExists(): void
+    {
+        // Attempt to retrieve orders for a non-existent seller with ID 999
+        $response = $this->get('/api/sellers/999/orders'); // Replace with a non-existent seller ID
+
+        // Assert that the response status code is 404 (Not Found)
+        $response->assertStatus(404);
+
+        // Assert that the response contains a JSON message indicating the seller was not found
+        $response->assertJson(['message' => 'Seller not found']);
+    }
 }
