@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,22 @@ Route::post('/sellers', function (Request $request) {
             'name' => $seller->name,
             'email' => $seller->email,
         ]
+    ], 201);
+});
+
+Route::post('/orders', function (Request $request) {
+
+    $fields = $request->only([
+        'seller_id',
+        'price_in_cents',
+        'payment_approved_at'
+    ]);
+
+    $order = new Order($fields);
+
+    $order->save();
+
+    return response()->json([
+        'data' => $order
     ], 201);
 });
