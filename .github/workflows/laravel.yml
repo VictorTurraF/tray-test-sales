@@ -37,7 +37,6 @@ jobs:
 
     - name: Run database migrations
       run: |
-        php artisan migrate:status
         php artisan migrate
 
     - name: Execute tests (Unit and Feature tests) via PHPUnit
