@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use Database\Factories\SellerFactory;
+use App\Models\Seller;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ListAllSellersTest extends TestCase
@@ -17,7 +16,7 @@ class ListAllSellersTest extends TestCase
     public function testShouldListAllSellers(): void
     {
         // Create a few seller records in the database using the factory
-        $sellers = SellerFactory::new()->count(5)->create();
+        $sellers = Seller::factory()->count(5)->create();
 
         // Send a GET request to your seller listing endpoint
         $response = $this->get('/api/sellers'); // Replace with your actual endpoint
