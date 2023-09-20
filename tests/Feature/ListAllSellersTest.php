@@ -33,5 +33,11 @@ class ListAllSellersTest extends TestCase
         $response->assertJsonFragment([
             'name' => $firstSeller->name,
         ]);
+
+        // Check the name of the last seller in the response
+        $lastSeller = $sellers->last();
+        $response->assertJsonFragment([
+            'name' => $lastSeller->name,
+        ]);
     }
 }
