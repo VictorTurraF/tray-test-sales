@@ -44,6 +44,5 @@ class CreateOrderTest extends TestCase
 
         // Assert that the "id" in the response matches the created order's ID
         $this->assertEquals($createdOrder->id, $response->json('data.id'));
-
     }
 }

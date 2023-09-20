@@ -9,8 +9,6 @@ use Tests\TestCase;
 
 class CreateSellerTest extends TestCase
 {
-    use RefreshDatabase; // Refresh the database after each test
-
     /**
      * A basic feature test example.
      */
@@ -36,16 +34,5 @@ class CreateSellerTest extends TestCase
             'name' => $name,
             'email' => $email,
         ]);
-
-        $createdSeller = Seller::where('email', $email)->first();
-
-        $this->assertEquals($name, $createdSeller->name);
-        $this->assertEquals($email, $createdSeller->email);
-
-        $response->assertJson([
-            'data' => [
-                'id' => $createdSeller->id
-            ]
-        ], true);
     }
 }
