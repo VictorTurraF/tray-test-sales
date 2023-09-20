@@ -41,6 +41,14 @@ Route::post('/sellers', function (Request $request) {
     ], 201);
 });
 
+Route::get('/sellers', function () {
+    $sellers = Seller::all();
+
+    return response()->json([
+        "data" => $sellers
+    ], 200);
+});
+
 Route::post('/orders', function (Request $request) {
 
     $fields = $request->only([
