@@ -65,3 +65,11 @@ Route::post('/orders', function (Request $request) {
         'data' => $order
     ], 201);
 });
+
+Route::get('/orders', function () {
+    $orders = Order::all();
+
+    return response()->json([
+        "data" => $orders
+    ], 200);
+});
