@@ -36,8 +36,13 @@ jobs:
         touch database/database.sqlite
 
     - name: Run database migrations
-      run: |
-        php artisan migrate
+      run: php artisan migrate
+
+    - name: Install node dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build front-end pages
+      run: yarn build
 
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
