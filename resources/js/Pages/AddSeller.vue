@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Create Seller</h1>
+    <button @click="visit('/vendas')">Voltar</button>
     <form @submit.prevent="createSeller">
       <div>
         <label for="name">Name:</label>
@@ -28,6 +29,9 @@ export default {
     };
   },
   methods: {
+    visit(route) {
+      this.$inertia.visit(route);
+    },
     createSeller() {
       // Send a POST request to create a seller
       axios.post("/api/sellers", this.seller).then((response) => {

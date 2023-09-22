@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>List of Orders</h1>
+    <button @click="visit('/vendas/cadastrar')">Adicionar Venda</button>
+    <button @click="visit('/')">Voltar</button>
     <ul>
       <li v-for="order in orders" :key="order.id">
         Seller ID: {{ order.seller_id }} - Price: ${{
@@ -16,6 +18,11 @@
 import axios from "axios";
 
 export default {
+  methods: {
+    visit(route) {
+      this.$inertia.visit(route)
+    }
+  },
   data() {
     return {
       orders: [],

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Create Order</h1>
+    <button @click="visit('/vendas')">Voltar</button>
     <form @submit.prevent="createOrder">
       <div>
         <label for="seller_id">Seller ID:</label>
@@ -43,6 +44,9 @@ export default {
     };
   },
   methods: {
+    visit(route) {
+      this.$inertia.visit(route);
+    },
     createOrder() {
       // Send a POST request to create an order
       axios.post("/api/orders", this.order).then((response) => {

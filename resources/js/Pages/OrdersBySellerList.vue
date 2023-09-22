@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>List of Orders for Seller {{ sellerId }}</h1>
+    <h1>List vendas por vendedor</h1>
+
+    <button @click="visit('/vendedores')">Voltar</button>
     <ul>
       <li v-for="order in orders" :key="order.id">
         Seller ID: {{ order.seller_id }} - Price: ${{
@@ -17,6 +19,11 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 
 export default {
+  methods: {
+    visit(route) {
+      this.$inertia.visit(route);
+    }
+  },
   props: {
     sellerId: String, // Accept the seller ID as a prop
   },
