@@ -17,29 +17,29 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-  return Inertia::render('HomePage');
+    return Inertia::render('HomePage');
 });
 
 Route::get('/vendedores', function () {
-  return Inertia::render('SellerList');
+    return Inertia::render('SellerList');
 });
 
 Route::get('/vendedores/cadastrar', function () {
-  return Inertia::render('AddSeller');
+    return Inertia::render('AddSeller');
 });
 
 Route::get('/vendas', function () {
-  return Inertia::render('OrderList');
+    return Inertia::render('OrderList');
 });
 
 Route::get('/vendas/cadastrar', function () {
-  return Inertia::render('AddOrder');
+    return Inertia::render('AddOrder');
 });
 
 Route::get('/vendedores/{seller_id}/vendas', function ($sellerId) {
-  return Inertia::render('OrdersBySellerList', [
-    'sellerId' => $sellerId
-  ]);
+    return Inertia::render('OrdersBySellerList', [
+        'sellerId' => $sellerId
+    ]);
 });
 
 require __DIR__ . '/auth.php';
