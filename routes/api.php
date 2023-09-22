@@ -102,3 +102,12 @@ Route::post('/reports/sellers/{seller_id}', function (Request $request, $sellerI
     // You can return a response or perform any desired action with the output
     return response()->json(['message' => 'Daily sales report sent successfully', 'output' => $output]);
 });
+
+Route::post('/reports/sales-summary', function (Request $request) {
+    $email = $request->input('email');
+
+    // Trigger the command to send the sales summary report to the specified email
+    Artisan::call('app:send-daily-sales-summary', ['email' => $email]);
+
+    return response()->json(['message' => 'Sales summary report sent successfully'], 200);
+});

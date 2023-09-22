@@ -46,4 +46,8 @@ Route::get('/relatorios/vendedor', function () {
     return Inertia::render('SellerReport');
 });
 
+Route::get('/relatorios/geral', function () {
+    return Inertia::render('SalesSummaryReport');
+});
+
 require __DIR__ . '/auth.php';
