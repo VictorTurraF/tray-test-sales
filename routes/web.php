@@ -42,4 +42,8 @@ Route::get('/vendedores/{seller_id}/vendas', function ($sellerId) {
     ]);
 });
 
+Route::get('/relatorios/vendedor', function () {
+    return Inertia::render('SellerReport');
+});
+
 require __DIR__ . '/auth.php';

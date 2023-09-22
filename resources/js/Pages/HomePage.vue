@@ -5,6 +5,7 @@
       <ul>
         <li><MenuLink @click="visit('/vendedores')">Ver Vendedores</MenuLink></li>
         <li><MenuLink @click="visit('/vendas')">Ver Vendas</MenuLink></li>
+        <li><MenuLink @click="visit('/relatorios/vendedor')">Reenviar relatorio de vendas do vendedor</MenuLink></li>
         <!-- Add links to other resources as needed -->
       </ul>
     </nav>

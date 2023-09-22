@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 class SendDailySalesReportToSeller extends Command
 {
 
-    protected $signature = 'app:send-daily-sales-report-to-seller {seller_id}';
+    protected $signature = 'app:send-daily-sales-report-to-seller {seller_id} {--date=}';
     protected $description = 'Send daily sales report to a specific seller';
 
     public function __construct(
@@ -23,7 +23,7 @@ class SendDailySalesReportToSeller extends Command
     public function handle()
     {
         $sellerId = $this->argument('seller_id');
-        $date = now()->format('Y-m-d');
+        $date = $this->option('date') ?: now()->format('Y-m-d');
 
         // Retrieve the seller by seller_id
         $seller = Seller::findOrFail($sellerId);
