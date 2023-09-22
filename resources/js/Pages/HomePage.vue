@@ -1,23 +1,29 @@
 <template>
-  <div>
-    <h1>Bem vindo ao sistema</h1>
-    <nav>
+  <Box>
+    <Title>Bem vindo ao sistema</Title>
+    <nav class="flex flex-col mt-4">
       <ul>
-        <li><a @click="visit('/vendedores')">Ver Vendedores</a></li>
-        <li><a @click="visit('/vendas')">Ver Vendas</a></li>
+        <li><MenuLink @click="visit('/vendedores')">Ver Vendedores</MenuLink></li>
+        <li><MenuLink @click="visit('/vendas')">Ver Vendas</MenuLink></li>
         <!-- Add links to other resources as needed -->
       </ul>
     </nav>
     <div v-inertia></div>
-  </div>
+  </Box>
 </template>
 
 <script>
+import Box from '@/Components/Box.vue';
+import Title from '@/Components/Title.vue';
+import Anchor from '@/Components/Anchor.vue';
+import MenuLink from '@/Components/MenuLink.vue';
+
 export default {
-  methods: {
-    visit(route) {
-      this.$inertia.visit(route);
+    methods: {
+        visit(route) {
+            this.$inertia.visit(route);
+        },
     },
-  },
+    components: { Box, Title, Anchor, MenuLink }
 };
 </script>
