@@ -53,6 +53,18 @@ services:
         networks:
             - sales
 
+    # node:
+    #     image: node:18
+    #     container_name: sales-node
+    #     working_dir: /var/www
+    #     volumes:
+    #         - '.:/var/www'
+    #     ports:
+    #         - '5173:5173'
+    #     command: ["yarn", "dev"]
+    #     networks:
+    #         - sales
+
 networks:
     sales:
         driver: bridge
