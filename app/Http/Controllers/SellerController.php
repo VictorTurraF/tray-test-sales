@@ -1,15 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Seller;
+use App\Repositories\SellerRepository;
 
 class SellerController extends Controller
 {
+    protected $sellerRepository;
+
+    public function __construct(SellerRepository $sellerRepository)
+    {
+        $this->sellerRepository = $sellerRepository;
+    }
+
     public function index()
     {
-        $sellers = Seller::all();
+        $sellers = $this->sellerRepository->all();
 
         return response()->json([
             "data" => $sellers
@@ -18,15 +24,9 @@ class SellerController extends Controller
 
     public function store(Request $request)
     {
-        $sellerName = $request->input("name");
-        $sellerEmail = $request->input("email");
+        $data = $request->only(["name", "email"]);
 
-        $seller = new Seller([
-            'name' => $sellerName,
-            'email' => $sellerEmail
-        ]);
-
-        $seller->save();
+        $seller = $this->sellerRepository->create($data);
 
         return response()->json([
             'data' => [

@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Seller;
-use App\Models\Order;
+use App\Repositories\SellerOrderRepository;
 
 class SellerOrderController extends Controller
 {
+    protected $sellerOrderRepository;
+
+    public function __construct(SellerOrderRepository $sellerOrderRepository)
+    {
+        $this->sellerOrderRepository = $sellerOrderRepository;
+    }
+
     public function index($sellerId)
     {
-        // Retrieve the seller record
-        $seller = Seller::find($sellerId);
+        $orders = $this->sellerOrderRepository->getOrdersBySellerId($sellerId);
 
-        if (!$seller) {
+        if (!$orders) {
             return response()->json(['message' => 'Seller not found'], 404);
         }
-
-        // Retrieve the orders associated with the seller
-        $orders = Order::where('seller_id', $sellerId)->get();
 
         return response()->json(['data' => $orders], 200);
     }

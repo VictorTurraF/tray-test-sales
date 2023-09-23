@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
+use App\Repositories\OrderRepository;
 
 class OrderController extends Controller
 {
+    protected $orderRepository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
+
     public function index()
     {
-        $orders = Order::all();
+        $orders = $this->orderRepository->all();
 
         return response()->json([
             "data" => $orders
@@ -18,14 +25,13 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $fields = $request->only([
+        $data = $request->only([
             'seller_id',
             'price_in_cents',
             'payment_approved_at'
         ]);
 
-        $order = new Order($fields);
-        $order->save();
+        $order = $this->orderRepository->create($data);
 
         return response()->json([
             'data' => $order
